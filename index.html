@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Frankeinstein game</title>
+    <!-- <link rel="stylesheet" href="styles.css" /> -->
+    <style>
+        body {
+            background: #111;
+            color: #eee;
+            font-family: Georgia, serif;
+        }
+
+        #container {
+            margin: 2.5vh 1.5vw;
+            font-size: 1.2rem;
+            max-width: 60vw;
+        }
+
+        #text {
+            word-break: break-word;
+            overflow-wrap: break-word;
+            transition: opacity 0.3s cubic-bezier(.4,0,.2,1);
+        }
+
+        .twine-link {
+            color: #40d088;
+            cursor: pointer;
+            font-size: 1em;
+            background: none;
+            border: none;
+            padding: 0;
+            font-family: inherit;
+            position: relative;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .twine-link::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: -2px;
+            width: 100%;
+            height: 2px;
+            background: currentColor;
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.3s ease;
+        }
+
+        .twine-link:hover,
+        .twine-link:focus {
+            color: #a1edc7;
+        }
+
+        .twine-link:hover::after,
+        .twine-link:focus::after {
+            transform: scaleX(1);
+        }
+
+        #back-link {
+            margin-top: 0.5em;
+            color: #aaa;
+            background: none;
+            border: 0;
+            font: inherit;
+            cursor: pointer;
+            transition: color 0.15s;
+        }
+
+        #back-link:hover,
+        #back-link:focus {
+            color: #ccc;
+        }
+
+        @media (max-width: 980px) {
+            #container {
+                font-size: 2.5rem;
+                margin: 2.5vh 2vw;
+                max-width: 95vw;;
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+    <div id="container">
+        <div id="text"></div>
+        <div id="back"></div>
+    </div>
+
+    <!-- <script src="engine.js"></script> -->
+    <script>
+        const story = {
+            "start": {
+                "text": `Are you ready? {yes} or {no}.`,
+                "choices": [
+                    { "label": "yes", "next": "scene0" },
+                    { "label": "no", "next": "start" }
+                ]
+            },
+            "scene0": {
+                "text": `You can choose to {talk} or {run}.`,
+                "choices": [
+                    { "label": "talk", "next": "scene1" },
+                    { "label": "run", "next": "scene2" }
+                ]
+            },
+            "scene1": {
+                "text": `You chose to {explore} or {wait}.`,
+                "choices": [
+                    { "label": "explore", "next": "scene3" },
+                    { "label": "wait", "next": "scene4" }
+                ]
+            },
+            "scene2": {
+                "text": `You chose to {hide} or {shout}.`,
+                "choices": [
+                    { "label": "hide", "next": "scene4" },
+                    { "label": "shout", "next": "scene5" }
+                ]
+            },
+            "scene3": {
+                "text": `You chose to do something like {rest} or {continue}.`,
+                "choices": [
+                    { "label": "rest", "next": "ending" },
+                    { "label": "continue", "next": "scene5" }
+                ]
+            },
+            "scene4": {
+                "text": `You chose to {return} or {sleep}. This is a long sentence added
+                        for testing purposes, allowing you to see how a large block of text can
+                        be written across multiple lines in your code editor without breaking
+                        anything in the story display. Even if this sentence continues far
+                        beyond what is practical, the browser will still render it as one
+                        continuous paragraph unless you manually insert line breaks.`,
+                "choices": [
+                    { "label": "return", "next": "scene5" },
+                    { "label": "sleep", "next": "ending" }
+                ]
+            },
+            "scene5": {
+                "text": `You can {finish} or {restart}.`,
+                "choices": [
+                    { "label": "finish", "next": "ending" },
+                    { "label": "restart", "next": "start" }
+                ]
+            },
+            "ending": {
+                "text": `The end. {restart}`,
+                "choices": [
+                    { "label": "restart", "next": "start" }
+                ]
+            }
+        };
+
+        const textDiv = document.getElementById('text');
+        const backDiv = document.getElementById('back');
+        let historyStack = [];
+        
+        /**
+        * Replaces {choice} placeholders inside the scene text with clickable buttons.
+        * @param {string} text - The scene text containing placeholders like {talk}.
+        * @param {Array} choices - A list of choices, each with "label" and "next".
+        * @returns {string} - The final HTML string with <button> elements inserted.
+        */
+        function renderText(text, choices) {
+            let rendered = text;
+            choices.forEach(choice => {
+                const regex = new RegExp("\\{" + choice.label.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + "\\}", "gi");
+                rendered = rendered.replace(
+                    regex,
+                    `<button class="twine-link" onclick="window.goTo('${choice.next}')">${choice.label}</button>`
+                );
+            });
+            return rendered;
+        }
+        
+        /**
+        * Displays a scene (text + choices) and shows/hides the Back button.
+        * @param {string} sceneName - The key of the scene to display.
+        */
+        function displayScene(sceneName) {
+            const scene = story[sceneName];
+            if (!scene) return;
+
+            textDiv.style.transition = "opacity 0.3s cubic-bezier(.4,0,.2,1)";
+            textDiv.style.opacity = 0;
+            setTimeout(() => {
+                textDiv.innerHTML = renderText(scene.text, scene.choices);
+                textDiv.style.opacity = 1;
+            }, 200);
+
+            if (historyStack.length > 1) {
+                backDiv.innerHTML =
+                    `<button id="back-link" onclick="window.goBack()">← Back</button>`;
+            } else {
+                backDiv.innerHTML = "";
+            }
+        }
+
+        /**
+        * Goes to a specified scene and pushes it onto the history stack.
+        * @param {string} name - The scene to navigate to.
+        */
+        window.goTo = function (name) {
+            if (historyStack.length === 0 || historyStack[historyStack.length - 1] !== name) {
+                historyStack.push(name);
+            }
+            displayScene(name);
+        };
+
+        /**
+        * Returns to the previous scene in history.
+        */
+        window.goBack = function () {
+            if (historyStack.length > 1) {
+                historyStack.pop();
+                const prev = historyStack[historyStack.length - 1];
+                displayScene(prev);
+            }
+        };
+        
+        /**
+         * Initializes the game by resetting history and going to the start scene.
+         */
+        window.onload = () => {
+            historyStack = [];
+            window.goTo('start');
+        };
+    </script>
+</body>
+</html>
