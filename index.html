@@ -93,40 +93,55 @@
 
     <!-- <script src="engine.js"></script> -->
     <script>
+        const inventory = [];
         const story = {
             "start": {
-                "text": `Are you ready? {yes} or {no}.`,
+                "text": `Are you ready? {yes}`,
                 "choices": [
-                    { "label": "yes", "next": "scene0" },
-                    { "label": "no", "next": "start" }
+                    { "label": "yes", "next": "scene0" }
                 ]
             },
             "scene0": {
-                "text": `You can choose to {talk} or {run}.`,
+                "text": `You try to move but you can't, every muscle in your body aches. 
+                        You trying to open you eyes but all you can see is darkness or glaring eyes blinded you. 
+                        It is like you are awaken from a very long sleep. But after a few moments, your eyes adjust to the darkness,
+                        and you are able to move around. You don't understand what is happening except that you are afraid and need to
+                        go somewhere else. So you stand up but and get out of the bed but you happens to trip and fall and hit a table.
+                        You crench you hands and suddenly you are holding a papers, you do not know what it is instead of a bunch of symbols.
+                        You hear screaming and loud sounds approach. Knowing you are running out of time, you look at a bunch of symbols, you decide
+                        to {take} or {leave} the papers behind.
+                        `,
                 "choices": [
-                    { "label": "talk", "next": "scene1" },
-                    { "label": "run", "next": "scene2" }
+                    { "label": "take", "next": "scene1" },
+                    { "label": "leave", "next": "scene2" }
                 ]
             },
             "scene1": {
-                "text": `You chose to {explore} or {wait}.`,
+                "text": `You look around and you see this space in your clothes where you can store items there. You put that papers inside your clothes.
+                        The loud sounds keep is getting louder and louder, you feel like something is approaching you so you decide to {run} or {hide}.`,
                 "choices": [
-                    { "label": "explore", "next": "scene3" },
-                    { "label": "wait", "next": "scene4" }
+                    { "label": "run", "next": "scene_x" },
+                    { "label": "hide", "next": "scene3" }
                 ]
             },
             "scene2": {
-                "text": `You chose to {hide} or {shout}.`,
+                "text": `You study the paper but couldn't make sense of it.
+                The loud sounds keep is getting louder and louder, you feel like something is approaching you so you decide to {run} or {hide}.`,
                 "choices": [
-                    { "label": "hide", "next": "scene4" },
-                    { "label": "shout", "next": "scene5" }
+                    { "label": "run", "next": "scene_x" },
+                    { "label": "hide", "next": "scene3"}
                 ]
             },
             "scene3": {
-                "text": `You chose to do something like {rest} or {continue}.`,
+                "text": `You see this dark like area or corner in the claustrophobic room you are in. You decide to hide there, behind this metalic arms and cloths.
+                        The doors open, you see  2 creatures or something holding something very bright. They look at each other and create a sort of sounds.
+                        You can't understand what those sounds are but seems like they are communicating with each other. One of the guy looks worried and 
+                        breathing heavily while the one that is holding the bright things seems calm and annoyed. They start to move around of the room, looking around, 
+                        you see a rock type things on the floor so you decide between throwing it at {the guy with the light} or {across the room}. 
+                        `,
                 "choices": [
-                    { "label": "rest", "next": "ending" },
-                    { "label": "continue", "next": "scene5" }
+                    { "label": "the guy with the light", "next": "ending" },
+                    { "label": "across the room", "next": "ending" }
                 ]
             },
             "scene4": {
