@@ -14,23 +14,41 @@ async function loadStory() {
 }
 
 /**
- * Replaces placeholders {choice} with clickable buttons.
- */
+* Replaces {choice} placeholders inside the scene text with clickable buttons.
+* @param {string} text - The scene text containing placeholders like {talk}.
+* @param {Array} choices - A list of choices, each with "label" and "next".
+* @returns {string} - The final HTML string with <button> elements inserted.
+*/
 function renderText(text, choices) {
     let rendered = text;
     choices.forEach(choice => {
+        let show = true;
+        if (choice.requires) {
+            if (Array.isArray(choice.requires)) {
+                show = choice.requires.every(req => historyStack.includes(req));
+            } else {
+                show = historyStack.includes(choice.requires);
+            }
+        }
         const regex = new RegExp("\\{" + choice.label.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + "\\}", "gi");
-        rendered = rendered.replace(
-            regex,
-            `<button class="twine-link" onclick="window.goTo('${choice.next}')">${choice.label}</button>`
-        );
+        if (show) {
+            rendered = rendered.replace(
+                regex,
+                `<button class="twine-link" onclick="window.goTo('${choice.next}')">${choice.label}</button>`
+            );
+        } else {
+            rendered = rendered.replace(regex, "");
+        }
     });
+    // Convert newlines to <br> for display
+    rendered = rendered.replace(/\n/g, "<br>");
     return rendered;
 }
 
 /**
- * Displays a scene and handles back button visibility.
- */
+* Displays a scene (text + choices) and shows/hides the Back button.
+* @param {string} sceneName - The key of the scene to display.
+*/
 function displayScene(sceneName) {
     const scene = story[sceneName];
     if (!scene) return;
@@ -52,18 +70,18 @@ function displayScene(sceneName) {
 }
 
 /**
- * Goes to a specified scene and updates history.
- */
+* Goes to a specified scene and pushes it onto the history stack.
+* @param {string} name - The scene to navigate to.
+*/
 function goTo(name) {
-    if (historyStack.length === 0 || historyStack[historyStack.length - 1] !== name) {
-        historyStack.push(name);
-    }
+    if (name === "start") historyStack = [];
+    if (historyStack.length === 0 || historyStack[historyStack.length - 1] !== name) historyStack.push(name);
     displayScene(name);
 }
 
 /**
- * Moves back one step.
- */
+* Returns to the previous scene in history.
+*/
 function goBack() {
     if (historyStack.length > 1) {
         historyStack.pop();

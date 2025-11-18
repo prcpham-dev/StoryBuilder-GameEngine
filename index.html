@@ -23,20 +23,27 @@
             transition: opacity 0.3s cubic-bezier(.4,0,.2,1);
         }
 
-        .twine-link {
-            color: #40d088;
-            cursor: pointer;
-            font-size: 1em;
+        .twine-link,
+        #back-link {
             background: none;
             border: none;
+            font: inherit;
+            cursor: pointer;
+            color: #40d088;
             padding: 0;
-            font-family: inherit;
-            position: relative;
             text-decoration: none;
+            position: relative;
+            display: inline-block;
             transition: color 0.3s ease;
         }
 
-        .twine-link::after {
+        #back-link {
+            margin-top: 0.5em;
+            color: #aaa;
+        }
+
+        .twine-link::after,
+        #back-link::after {
             content: "";
             position: absolute;
             left: 0;
@@ -54,31 +61,23 @@
             color: #a1edc7;
         }
 
-        .twine-link:hover::after,
-        .twine-link:focus::after {
-            transform: scaleX(1);
-        }
-
-        #back-link {
-            margin-top: 0.5em;
-            color: #aaa;
-            background: none;
-            border: 0;
-            font: inherit;
-            cursor: pointer;
-            transition: color 0.15s;
-        }
-
         #back-link:hover,
         #back-link:focus {
             color: #ccc;
+        }
+
+        .twine-link:hover::after,
+        .twine-link:focus::after,
+        #back-link:hover::after,
+        #back-link:focus::after {
+            transform: scaleX(1);
         }
 
         @media (max-width: 980px) {
             #container {
                 font-size: 2.5rem;
                 margin: 2.5vh 2vw;
-                max-width: 95vw;;
+                max-width: 95vw;
             }
         }
 
@@ -93,23 +92,16 @@
 
     <!-- <script src="engine.js"></script> -->
     <script>
-        const inventory = [];
         const story = {
             "start": {
                 "text": `Are you ready? {yes}`,
                 "choices": [
-                    { "label": "yes", "next": "scene0" }
+                    { "label": "yes", "next": "test" }
                 ]
             },
+
             "scene0": {
-                "text": `You try to move but you can't, every muscle in your body aches. 
-                        You trying to open you eyes but all you can see is darkness or glaring eyes blinded you. 
-                        It is like you are awaken from a very long sleep. But after a few moments, your eyes adjust to the darkness,
-                        and you are able to move around. You don't understand what is happening except that you are afraid and need to
-                        go somewhere else. So you stand up but and get out of the bed but you happens to trip and fall and hit a table.
-                        You crench you hands and suddenly you are holding a papers, you do not know what it is instead of a bunch of symbols.
-                        You hear screaming and loud sounds approach. Knowing you are running out of time, you look at a bunch of symbols, you decide
-                        to {take} or {leave} the papers behind.
+                "text": `You try to move but you can't, every muscle in your body aches. You trying to open you eyes but all you can see is darkness or glaring eyes blinded you. It is like you are awaken from a very long sleep. But after a few moments, your eyes adjust to the darkness, and you are able to move around. You don't understand what is happening except that you are afraid and need to go somewhere else. So you stand up but and get out of the bed but you happens to trip and fall and hit a table. You crench you hands and suddenly you are holding a papers, you do not know what it is instead of a bunch of symbols. You hear screaming and loud sounds approach. Knowing you are running out of time, you look at a bunch of symbols, you decide to {take} or {leave} the papers behind.
                         `,
                 "choices": [
                     { "label": "take", "next": "scene1" },
@@ -117,53 +109,109 @@
                 ]
             },
             "scene1": {
-                "text": `You look around and you see this space in your clothes where you can store items there. You put that papers inside your clothes.
-                        The loud sounds keep is getting louder and louder, you feel like something is approaching you so you decide to {run} or {hide}.`,
+                "text": `You look around and you see this space in your clothes where you can store items there. You put that papers inside your clothes. The loud sounds keep is getting louder and louder, you feel like something is approaching you so you decide to {run} or {hide}.`,
                 "choices": [
                     { "label": "run", "next": "ending" },
                     { "label": "hide", "next": "scene3" }
                 ]
             },
             "scene2": {
-                "text": `You study the paper but couldn't make sense of it.
-                The loud sounds keep is getting louder and louder, you feel like something is approaching you so you decide to {run} or {hide}.`,
+                "text": `You study the paper but couldn't make sense of it. The loud sounds keep is getting louder and louder, you feel like something is approaching you so you decide to {run} or {hide}.`,
                 "choices": [
                     { "label": "run", "next": "ending" },
                     { "label": "hide", "next": "scene3"}
                 ]
             },
             "scene3": {
-                "text": `You see this dark like area or corner in the claustrophobic room you are in. You decide to hide there, behind this metalic arms and cloths.
-                        The doors open, you see  2 creatures or something holding something very bright. They look at each other and create a sort of sounds.
-                        You can't understand what those sounds are but seems like they are communicating with each other. One of the guy looks worried and 
-                        breathing heavily while the one that is holding the bright things seems calm and annoyed. They start to move around of the room, looking around, 
-                        you see a rock type things on the floor so you decide between throwing it at {the guy with the light} or {across the room}. 
+                "text": `You see this dark like area or corner in the claustrophobic room you are in. You decide to hide there, behind this metalic arms and cloths. The doors open, you see  2 creatures or something holding something very bright. They look at each other and create a sort of sounds. You can't understand what those sounds are but seems like they are communicating with each other. One of the guy looks worried and breathing heavily while the one that is holding the bright things seems calm and annoyed. They start to move around of the room, looking around, you see a rock type things on the floor so you decide between throwing it at {the guy with the light} or {across the room}. 
                         `,
                 "choices": [
-                    { "label": "the guy with the light", "next": "ending" },
-                    { "label": "across the room", "next": "ending" }
+                    { "label": "the guy with the light", "next": "restart" },
+                    { "label": "across the room", "next": "scene4" }
                 ]
             },
             "scene4": {
-                "text": `You chose to {return} or {sleep}. This is a long sentence added
-                        for testing purposes, allowing you to see how a large block of text can
-                        be written across multiple lines in your code editor without breaking
-                        anything in the story display. Even if this sentence continues far
-                        beyond what is practical, the browser will still render it as one
-                        continuous paragraph unless you manually insert line breaks.`,
+                "text": `You chose to {return} or {sleep}. This is a long sentence added for testing purposes, allowing you to see how a large block of text can be written across multiple lines in your code editor without breaking anything in the story display. Even if this sentence continues far beyond what is practical, the browser will still render it as one continuous paragraph unless you manually insert line breaks.`,
                 "choices": [
                     { "label": "return", "next": "scene5" },
-                    { "label": "sleep", "next": "ending" }
+                    { "label": "sleep", "next": "originalEnding" }
                 ]
             },
-            "scene5": {
-                "text": `You can {finish} or {restart}.`,
+
+            "originalEnding": {
+                "text": `You move through the forest, thinking of all you have seen. Every door closed to you. Every face twisted in fear. You understand now, no human will ever stand beside you.
+
+                        You are different. Made, not born. Brought into a world that never asked for you. However, if one man could shape your body from death, if he could breathe life into cold flesh, then he is more than a creator. He is a god.
+
+                        And a god who can make life can make another like you someone who will not fear your face, someone who can share the world with you, someone who can end the endless silence. You do not seek revenge. You seek companionship.
+
+                        With this new purpose, you turn toward the mountains where Victor once worked. You will find him. And you will demand not love from humanity but the chance to not be alone.
+
+                        The end, {restart}`,
                 "choices": [
-                    { "label": "finish", "next": "ending" },
                     { "label": "restart", "next": "start" }
                 ]
             },
-            "ending": {
+
+            "nomadEnding": {
+                "text": `You stop walking. You think about the papers. Maybe that is not a mistake. Maybe not knowing where you come from is a kind of freedom. The world has given you nothing but pain. If this is the life you were made for, then what good can truth bring?
+
+                        Perhaps forgetting your beginning is a blessing. Perhaps your story does not need a creator to tell it. You walk deeper into the wilds, among wolves, bears, and wandering creatures, you see them being hunted, rejected, feared, torn apart by human. They are not monsters. They are simply different. Just like you.
+
+                        Maybe your place has never been among humans at all. Maybe your difference means you are meant to roam beyond them into forests, mountains, and distant lands untouched by mankind.
+
+                        You remember the books you once found like Paradise Lost, The Sorrows of Young Werther, and Plutarch’s Lives. All of the great stories are of wanderers, exiles, and adventurers. And so you choose adventure. Maybe you are not meantto belong here but somewhere else entirely. A world where your difference is not a curse, but a beginning.
+
+                        The end {restart}`,
+                "choices": [
+                    { "label": "restart", "next": "start" }
+                ]
+            },
+
+            "circusEnding": {
+                "text": `You try to run, but a sharp blow hits your back. Darkness swallows everything.
+
+                        When you wake, you are not in the forest. You are chained. Metal cuffs bite into your wrists and ankles. A collar digs into your neck. Humans drag you into a bright circular tent filled with cheers. You blink, confused—until the first whip strikes your back. The crowd laughs. You are forced to stand, forced to perform, forced to move heavy things for their amusement.
+                        
+                        Every day is the the same. They are fill with screams, laughter, pain.
+
+                        Night after night, you lie in chains and think of your beginning. You wish you had never opened your eyes at all. Once, in desperation, you even try to end yourself. But you cannot die. You just simply heal.
+                        
+                        You look at the other animals in cages wolves, bears, creatures who only wanted to protect themself. They tremble when the humans raise the whip. And when they look at you, they tremble even harder. To them, you look like the humans who hurt them. They fear you too.
+
+                        You are not human enough for people to love you.
+                        You are not animal enough for beasts to trust you.
+                        Then what are you?
+
+                        In the darkness of the cage, you listen to the crowd outside the cheering, the clapping, the laughter that rises whenever you fall.
+                        
+                        And maybe you understand at last.
+
+                        You are a tool. You were made to suffer for others to entertained.
+                        Nothing more. 
+                        Nothing less.
+
+                        The end {restart}`,
+                "choices": [
+                    { "label": "restart", "next": "start" }
+                ]
+            },
+
+            "test": {
+                "text": `This is a test scene. You can go to 
+                {scene0},
+                {originalEnding},
+                {nomadEnding},
+                {circusEnding}`,
+                "choices": [
+                    { "label": "scene0", "next": "scene0" },
+                    { "label": "originalEnding", "next": "originalEnding" },
+                    { "label": "nomadEnding", "next": "nomadEnding" },
+                    { "label": "circusEnding", "next": "circusEnding" }
+                ]
+            },
+
+            "restart": {
                 "text": `The end. {restart}, {test}`,
                 "choices": [
                     { "label": "restart", "next": "start" },
@@ -203,6 +251,7 @@
                     rendered = rendered.replace(regex, "");
                 }
             });
+            rendered = rendered.replace(/\n/g, "<br>");
             return rendered;
         }
         
@@ -234,12 +283,8 @@
         * @param {string} name - The scene to navigate to.
         */
         window.goTo = function (name) {
-            if (name === "start") {
-                historyStack = [];
-            }
-            if (historyStack.length === 0 || historyStack[historyStack.length - 1] !== name) {
-                historyStack.push(name);
-            }
+            if (name === "start") historyStack = [];
+            if (historyStack.length === 0 || historyStack[historyStack.length - 1] !== name) historyStack.push(name);
             displayScene(name);
         };
 
