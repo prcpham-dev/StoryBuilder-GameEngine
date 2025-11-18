@@ -120,7 +120,7 @@
                 "text": `You look around and you see this space in your clothes where you can store items there. You put that papers inside your clothes.
                         The loud sounds keep is getting louder and louder, you feel like something is approaching you so you decide to {run} or {hide}.`,
                 "choices": [
-                    { "label": "run", "next": "scene_x" },
+                    { "label": "run", "next": "ending" },
                     { "label": "hide", "next": "scene3" }
                 ]
             },
@@ -128,7 +128,7 @@
                 "text": `You study the paper but couldn't make sense of it.
                 The loud sounds keep is getting louder and louder, you feel like something is approaching you so you decide to {run} or {hide}.`,
                 "choices": [
-                    { "label": "run", "next": "scene_x" },
+                    { "label": "run", "next": "ending" },
                     { "label": "hide", "next": "scene3"}
                 ]
             },
@@ -164,9 +164,10 @@
                 ]
             },
             "ending": {
-                "text": `The end. {restart}`,
+                "text": `The end. {restart}, {test}`,
                 "choices": [
-                    { "label": "restart", "next": "start" }
+                    { "label": "restart", "next": "start" },
+                    { "label": "test", "next": "start", "requires": ["scene3"] }
                 ]
             }
         };
@@ -184,11 +185,23 @@
         function renderText(text, choices) {
             let rendered = text;
             choices.forEach(choice => {
+                let show = true;
+                if (choice.requires) {
+                    if (Array.isArray(choice.requires)) {
+                        show = choice.requires.every(req => historyStack.includes(req));
+                    } else {
+                        show = historyStack.includes(choice.requires);
+                    }
+                }
                 const regex = new RegExp("\\{" + choice.label.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + "\\}", "gi");
-                rendered = rendered.replace(
-                    regex,
-                    `<button class="twine-link" onclick="window.goTo('${choice.next}')">${choice.label}</button>`
-                );
+                if (show) {
+                    rendered = rendered.replace(
+                        regex,
+                        `<button class="twine-link" onclick="window.goTo('${choice.next}')">${choice.label}</button>`
+                    );
+                } else {
+                    rendered = rendered.replace(regex, "");
+                }
             });
             return rendered;
         }
@@ -221,6 +234,9 @@
         * @param {string} name - The scene to navigate to.
         */
         window.goTo = function (name) {
+            if (name === "start") {
+                historyStack = [];
+            }
             if (historyStack.length === 0 || historyStack[historyStack.length - 1] !== name) {
                 historyStack.push(name);
             }
