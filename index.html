@@ -94,9 +94,10 @@
     <script>
         const story = {
             "start": {
-                "text": `Are you ready? {yes}`,
+                "text": `Are you ready? {yes} or {test}`,
                 "choices": [
-                    { "label": "yes", "next": "test" }
+                    { "label": "yes", "next": "scene0" },
+                    { "label": "test", "next": "test" }
                 ]
             },
 
