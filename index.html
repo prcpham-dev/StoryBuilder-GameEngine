@@ -102,15 +102,42 @@
             },
 
             "scene0": {
-                "text": `You try to move but you can't, every muscle in your body aches. You trying to open you eyes but all you can see is darkness or glaring eyes blinded you. It is like you are awaken from a very long sleep. But after a few moments, your eyes adjust to the darkness, and you are able to move around. You don't understand what is happening except that you are afraid and need to go somewhere else. So you stand up but and get out of the bed but you happens to trip and fall and hit a table. You crench you hands and suddenly you are holding a papers, you do not know what it is instead of a bunch of symbols. You hear screaming and loud sounds approach. Knowing you are running out of time, you look at a bunch of symbols, you decide to {take} or {leave} the papers behind.
+                "text": `A loud shriek jolts you awake.<br><br>
+
+                        Instinctively, you try to move, but you can't. Every muscle in your body aches. Your head thrums painfully.<br>
+                        Your eyes blare open, only to be greeted with a room of light devoid.<br>
+                        You raise your withered hand into the air, trying to grasp something, anything...<br>
+                        All you feel is soft cloth beneath your back and weathered stones on the side. A bedroom, you surmise.<br><br>
+
+                        After a few moments, your eyes adjust to the darkness... at least enough to make out the dismal place.<br>
+                        Another shriek. Is someone coming? You need to escape. You're not sure why, but you know it to be true.<br>
+                        Maybe you should try to {stand}...
                         `,
+                "choices": [
+                    { "label": "stand", "next": "scene0-1" }
+                ]
+            },
+            "scene0-1": {
+                "text": `THUMP.<br><br>
+
+                        In your fugue state, you stumble straight into a table.<br>
+                        You fall to the ground, and find yourself jolted awake by the ice-cold stone floor.<br>
+                        Your hands scramble to find solid ground to push yourself up. Surprisingly, you feel something smooth and thin...<br><br>
+                        
+                        Paper?<br><br>
+
+                        In the darkness, you can make out a scrambled mass of scribbles on the sheets. You cannot make it out.<br>
+                        The screams are getting louder. Something is approaching.<br>
+                        There is little time left. Decide whether to {take} or {leave} the papers behind.<br>`,
                 "choices": [
                     { "label": "take", "next": "scene1" },
                     { "label": "leave", "next": "scene2" }
                 ]
             },
             "scene1": {
-                "text": `You look around and you see this space in your clothes where you can store items there. You put that papers inside your clothes. The loud sounds keep is getting louder and louder, you feel like something is approaching you so you decide to {run} or {hide}.`,
+                "text": `You pat your pants and find a dusty pocket. That'll have to do.
+                        You stuff the papers inside your clothes. 
+                        The loud sounds keep is getting louder and louder, you feel like something is approaching you so you decide to {run} or {hide}.`,
                 "choices": [
                     { "label": "run", "next": "ending" },
                     { "label": "hide", "next": "scene3" }
