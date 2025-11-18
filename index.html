@@ -111,7 +111,7 @@
                         thrums painfully. Your eyes blare open, only to be greeted with a room of light devoid.
                         You raise your withered hand into the air, trying to grasp something, anything... <br><br>
 
-                        All you feel is soft cloth beneath your back and weathered stones on the side. 
+                        All you feel is soft cloth beneath your back and weathered stones to your left. 
                         A bedroom, you surmise. <br><br>
 
                         After a few moments, your eyes adjust to the darkness... at least enough to make out the 
@@ -131,8 +131,7 @@
 
                         Paper?<br><br>
 
-                        In the darkness, you can make out a scrambled mess of scribbles on the sheets. You cannot make 
-                        it out. The sounds are getting louder. Something is approaching. There is little time left. 
+                        In the darkness, you can barely make out a scrambled mess of scribbles on the sheets. The sounds are getting louder. Something is approaching. There is little time left. 
                         Decide whether to {take} or {leave} the papers behind.`,
                 "choices": [
                     { "label": "take", "next": "scene1" },
@@ -142,35 +141,38 @@
             "scene1": {
                 "text": `You pat your pants and find a dusty pocket. That'll have to do.
                         You stuff the papers inside your clothes. 
-                        The loud sounds keep is getting louder and louder, you feel like something is 
-                        approaching you so you decide to {run} or {hide}.`,
+                        The sounds are approaching your room. Choose whether {run} or {hide}.`,
                 "choices": [
                     { "label": "run", "next": "ending" },
                     { "label": "hide", "next": "scene3" }
                 ]
             },
             "scene2": {
-                "text": `You study the paper but couldn't make sense of it. The loud sounds keep is 
-                        getting louder and louder, you feel like something is approaching you so you 
-                        decide to {run} or {hide}.`,
+                "text": `You tried to study the paper, but couldn't make sense of it. 
+                        The sounds are approaching your room. Choose whether {run} or {hide}.`,
                 "choices": [
                     { "label": "run", "next": "ending" },
                     { "label": "hide", "next": "scene3"}
                 ]
             },
             "scene3": {
-                "text": `You see this dark like area or corner in the claustrophobic room you are in. 
-                        You decide to hide there, behind this metalic arms and cloths. The doors open, 
-                        you see  2 creatures or something holding something very bright. They look at each 
-                        other and create a sort of sounds. You can't understand what those sounds are but 
-                        seems like they are communicating with each other. One of the guy looks worried 
-                        and breathing heavily while the one that is holding the bright things seems calm 
-                        and annoyed. They start to move around of the room, looking around, you see a rock type 
-                        things on the floor so you decide between throwing it at {the guy with the light} 
-                        or {across the room}. 
+                "text": `You resign to stay in this room for now. The world outside could be hostile, after all.
+                        You swiftly dive behind a cluttered stack of boxes, pushing aside metallic bits and dirty clothes.
+                        The doors slam open, and a paltry light spreads across the room. 
+                        Gazing above the boxes, you can make out two figures, one of which holds a bright object. Is that the source of this light?
+                        Foreign noises emanate from these creatures -- a form of communication, perhaps?
+                        Best to stay hidden for now.<br><br>
+
+                        As the figures draw closer, their faces come into view.
+                        One sports a worried expression and grunts as it pushes a chair to the side.
+                        The other swings the glowing object this way and that, sighing.
+                        The light, shifting around the room, eventually draws your attention to a rusted metal plate. It's within reach.
+                        At this rate, you'll most assuredly be caught.<br><br>
+
+                        A few thoughts come to mind. Perhaps you can throw the plate {across the room} or {at the figure with the glowing object}.
                         `,
                 "choices": [
-                    { "label": "the guy with the light", "next": "restart" },
+                    { "label": "at the figure with the glowing object", "next": "restart" },
                     { "label": "across the room", "next": "scene4" }
                 ]
             },
