@@ -14,7 +14,7 @@
         #container {
             margin: 2.5vh 1.5vw;
             font-size: 1.2rem;
-            max-width: 60vw;
+            max-width: 45vw;
         }
 
         #text {
@@ -231,8 +231,8 @@
                         They tremble when the humans raise the whip. And when they look at you, they tremble even harder. 
                         To them, you look like the humans who hurt them. They fear you too. <br><br>
 
-                        You are not human enough for people to love you. 
-                        You are not animal enough for beasts to trust you. 
+                        You are not human enough for people to love you. <br>
+                        You are not animal enough for beasts to trust you. <br>
                         Then what are you? <br><br>
 
                         In the darkness of the cage, you listen to the crowd outside the cheering, the clapping, the laughter 
@@ -240,8 +240,8 @@
                         
                         And maybe you understand at last. <br><br>
 
-                        You are a tool. You were made to suffer for others to entertained.
-                        Nothing more.
+                        You are a tool. You were made to suffer for others to entertained. <br>
+                        Nothing more. <br>
                         Nothing less. <br><br>
 
                         The end {restart}`,
@@ -251,10 +251,10 @@
             },
 
             "test": {
-                "text": `This is a test scene. You can go to 
-                {scene0},
-                {originalEnding},
-                {nomadEnding},
+                "text": `This is a test scene. You can go to <br>
+                {scene0}, <br>
+                {originalEnding},<br>
+                {nomadEnding},<br>  
                 {circusEnding}`,
                 "choices": [
                     { "label": "scene0", "next": "scene0" },
@@ -276,7 +276,14 @@
         const textDiv = document.getElementById('text');
         const backDiv = document.getElementById('back');
         let historyStack = [];
-        
+
+        /**
+         * Cleans up a string by removing excessive newlines and leading whitespace.
+         * @param {string} str - The input string to clean.
+         * @returns {string} - The cleaned string.
+         */
+        const cleanText = str => str.replace(/\n+/g, ' ').replace(/^\n/, "").replace(/^[ \t]+/gm, "").replace(/\n+/g, ""); 
+
         /**
         * Replaces {choice} placeholders inside the scene text with clickable buttons.
         * @param {string} text - The scene text containing placeholders like {talk}.
@@ -284,7 +291,7 @@
         * @returns {string} - The final HTML string with <button> elements inserted.
         */
         function renderText(text, choices) {
-            let rendered = text;
+            let rendered = cleanText(text);
             choices.forEach(choice => {
                 let show = true;
                 if (choice.requires) {
@@ -304,7 +311,6 @@
                     rendered = rendered.replace(regex, "");
                 }
             });
-            rendered = rendered.replace(/\n/g, "<div>");
             return rendered;
         }
         

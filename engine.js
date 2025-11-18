@@ -14,13 +14,20 @@ async function loadStory() {
 }
 
 /**
+ * Cleans up a string by removing excessive newlines and leading whitespace.
+ * @param {string} str - The input string to clean.
+ * @returns {string} - The cleaned string.
+ */
+const cleanText = str => str.replace(/\n+/g, ' ').replace(/^\n/, "").replace(/^[ \t]+/gm, "").replace(/\n+/g, ""); 
+
+/**
 * Replaces {choice} placeholders inside the scene text with clickable buttons.
 * @param {string} text - The scene text containing placeholders like {talk}.
 * @param {Array} choices - A list of choices, each with "label" and "next".
 * @returns {string} - The final HTML string with <button> elements inserted.
 */
 function renderText(text, choices) {
-    let rendered = text;
+    let rendered = cleanText(text);
     choices.forEach(choice => {
         let show = true;
         if (choice.requires) {
@@ -41,7 +48,6 @@ function renderText(text, choices) {
         }
     });
     // Convert newlines to <br> for display
-    rendered = rendered.replace(/\n/g, "<br>");
     return rendered;
 }
 
