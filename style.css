@@ -7,7 +7,7 @@ body {
 #container {
     margin: 2.5vh 1.5vw;
     font-size: 1.2rem;
-    max-width: 60vw;
+    max-width: 45vw;
 }
 
 #text {
@@ -16,13 +16,12 @@ body {
     transition: opacity 0.3s cubic-bezier(.4,0,.2,1);
 }
 
-.twine-link,
-#back-link {
+.option-link,
+.back-link {
     background: none;
     border: none;
     font: inherit;
     cursor: pointer;
-    color: #40d088;
     padding: 0;
     text-decoration: none;
     position: relative;
@@ -30,13 +29,17 @@ body {
     transition: color 0.3s ease;
 }
 
-#back-link {
+.option-link {
+    color: #40d088;
+}
+
+.back-link {
     margin-top: 0.5em;
     color: #aaa;
 }
 
-.twine-link::after,
-#back-link::after {
+.option-link::after,
+.back-link::after {
     content: "";
     position: absolute;
     left: 0;
@@ -49,20 +52,20 @@ body {
     transition: transform 0.3s ease;
 }
 
-.twine-link:hover,
-.twine-link:focus {
+.option-link:hover,
+.option-link:focus {
     color: #a1edc7;
 }
 
-#back-link:hover,
-#back-link:focus {
+.back-link:hover,
+.back-link:focus {
     color: #ccc;
 }
 
-.twine-link:hover::after,
-.twine-link:focus::after,
-#back-link:hover::after,
-#back-link:focus::after {
+.option-link:hover::after,
+.option-link:focus::after,
+.back-link:hover::after,
+.back-link:focus::after {
     transform: scaleX(1);
 }
 

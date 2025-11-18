@@ -23,13 +23,12 @@
             transition: opacity 0.3s cubic-bezier(.4,0,.2,1);
         }
 
-        .twine-link,
-        #back-link {
+        .option-link,
+        .back-link {
             background: none;
             border: none;
             font: inherit;
             cursor: pointer;
-            color: #40d088;
             padding: 0;
             text-decoration: none;
             position: relative;
@@ -37,13 +36,17 @@
             transition: color 0.3s ease;
         }
 
-        #back-link {
+        .option-link {
+            color: #40d088;
+        }
+
+        .back-link {
             margin-top: 0.5em;
             color: #aaa;
         }
 
-        .twine-link::after,
-        #back-link::after {
+        .option-link::after,
+        .back-link::after {
             content: "";
             position: absolute;
             left: 0;
@@ -56,20 +59,20 @@
             transition: transform 0.3s ease;
         }
 
-        .twine-link:hover,
-        .twine-link:focus {
+        .option-link:hover,
+        .option-link:focus {
             color: #a1edc7;
         }
 
-        #back-link:hover,
-        #back-link:focus {
+        .back-link:hover,
+        .back-link:focus {
             color: #ccc;
         }
 
-        .twine-link:hover::after,
-        .twine-link:focus::after,
-        #back-link:hover::after,
-        #back-link:focus::after {
+        .option-link:hover::after,
+        .option-link:focus::after,
+        .back-link:hover::after,
+        .back-link:focus::after {
             transform: scaleX(1);
         }
 
@@ -139,21 +142,32 @@
             "scene1": {
                 "text": `You pat your pants and find a dusty pocket. That'll have to do.
                         You stuff the papers inside your clothes. 
-                        The loud sounds keep is getting louder and louder, you feel like something is approaching you so you decide to {run} or {hide}.`,
+                        The loud sounds keep is getting louder and louder, you feel like something is 
+                        approaching you so you decide to {run} or {hide}.`,
                 "choices": [
                     { "label": "run", "next": "ending" },
                     { "label": "hide", "next": "scene3" }
                 ]
             },
             "scene2": {
-                "text": `You study the paper but couldn't make sense of it. The loud sounds keep is getting louder and louder, you feel like something is approaching you so you decide to {run} or {hide}.`,
+                "text": `You study the paper but couldn't make sense of it. The loud sounds keep is 
+                        getting louder and louder, you feel like something is approaching you so you 
+                        decide to {run} or {hide}.`,
                 "choices": [
                     { "label": "run", "next": "ending" },
                     { "label": "hide", "next": "scene3"}
                 ]
             },
             "scene3": {
-                "text": `You see this dark like area or corner in the claustrophobic room you are in. You decide to hide there, behind this metalic arms and cloths. The doors open, you see  2 creatures or something holding something very bright. They look at each other and create a sort of sounds. You can't understand what those sounds are but seems like they are communicating with each other. One of the guy looks worried and breathing heavily while the one that is holding the bright things seems calm and annoyed. They start to move around of the room, looking around, you see a rock type things on the floor so you decide between throwing it at {the guy with the light} or {across the room}. 
+                "text": `You see this dark like area or corner in the claustrophobic room you are in. 
+                        You decide to hide there, behind this metalic arms and cloths. The doors open, 
+                        you see  2 creatures or something holding something very bright. They look at each 
+                        other and create a sort of sounds. You can't understand what those sounds are but 
+                        seems like they are communicating with each other. One of the guy looks worried 
+                        and breathing heavily while the one that is holding the bright things seems calm 
+                        and annoyed. They start to move around of the room, looking around, you see a rock type 
+                        things on the floor so you decide between throwing it at {the guy with the light} 
+                        or {across the room}. 
                         `,
                 "choices": [
                     { "label": "the guy with the light", "next": "restart" },
@@ -161,7 +175,11 @@
                 ]
             },
             "scene4": {
-                "text": `You chose to {return} or {sleep}. This is a long sentence added for testing purposes, allowing you to see how a large block of text can be written across multiple lines in your code editor without breaking anything in the story display. Even if this sentence continues far beyond what is practical, the browser will still render it as one continuous paragraph unless you manually insert line breaks.`,
+                "text": `You chose to {return} or {sleep}. This is a long sentence added for testing purposes, 
+                        allowing you to see how a large block of text can be written across multiple lines in 
+                        your code editor without breaking anything in the story display. Even if this sentence 
+                        continues far beyond what is practical, the browser will still render it as one continuous 
+                        paragraph unless you manually insert line breaks.`,
                 "choices": [
                     { "label": "return", "next": "scene5" },
                     { "label": "sleep", "next": "originalEnding" }
@@ -305,7 +323,7 @@
                 if (show) {
                     rendered = rendered.replace(
                         regex,
-                        `<button class="twine-link" onclick="window.goTo('${choice.next}')">${choice.label}</button>`
+                        `<button class="option-link" onclick="window.goTo('${choice.next}')">${choice.label}</button>`
                     );
                 } else {
                     rendered = rendered.replace(regex, "");
@@ -331,7 +349,7 @@
 
             if (historyStack.length > 1) {
                 backDiv.innerHTML =
-                    `<button id="back-link" onclick="window.goBack()">← Back</button>`;
+                    `<button class="back-link" onclick="window.goBack()">← Back</button>`;
             } else {
                 backDiv.innerHTML = "";
             }

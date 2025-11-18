@@ -69,7 +69,7 @@ function displayScene(sceneName) {
 
     if (historyStack.length > 1) {
         backDiv.innerHTML =
-            `<button id="back-link" onclick="goBack()">← Back</button>`;
+            `<button class="back-link" onclick="goBack()">← Back</button>`;
     } else {
         backDiv.innerHTML = "";
     }
