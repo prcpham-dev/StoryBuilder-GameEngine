@@ -97,14 +97,14 @@
     <script>
         const story = {
             "start": {
-                "text": `Are you ready? {yes} or {test}`,
+                "text": `Are you ready? {yes} or {admin}`,
                 "choices": [
-                    { "label": "yes", "next": "scene0" },
-                    { "label": "test", "next": "test" }
+                    { "label": "yes", "next": "scene1" },
+                    { "label": "admin", "next": "admin" }
                 ]
             },
 
-            "scene0": {
+            "scene1.0": {
                 "text": `A loud shriek jolts you awake.<br><br>
 
                         Instinctively, you try to move, but you can't. Every muscle in your body aches. Your head 
@@ -119,10 +119,10 @@
                         but you know it to be true. Maybe you should try to {stand...} <br><br>
                         `,
                 "choices": [
-                    { "label": "stand...", "next": "scene0-1" }
+                    { "label": "stand...", "next": "scene1.1" }
                 ]
             },
-            "scene0-1": {
+            "scene1.1": {
                 "text": `THUMP.<br><br>
 
                         In your fugue state, you stumble straight into a table. You fall to the ground, and find yourself 
@@ -134,28 +134,28 @@
                         In the darkness, you can barely make out a scrambled mess of scribbles on the sheets. The sounds are getting louder. Something is approaching. There is little time left. 
                         Decide whether to {take} or {leave} the papers behind.`,
                 "choices": [
-                    { "label": "take", "next": "scene1" },
-                    { "label": "leave", "next": "scene2" }
+                    { "label": "take", "next": "scene1.2" },
+                    { "label": "leave", "next": "scene1.3" }
                 ]
             },
-            "scene1": {
+            "scene1.2": {
                 "text": `You pat your pants and find a dusty pocket. That'll have to do.
                         You stuff the papers inside your clothes. 
                         The sounds are approaching your room. Choose whether {run} or {hide}.`,
                 "choices": [
                     { "label": "run", "next": "ending" },
-                    { "label": "hide", "next": "scene3" }
+                    { "label": "hide", "next": "scene1.4" }
                 ]
             },
-            "scene2": {
+            "scene1.3": {
                 "text": `You tried to study the paper, but couldn't make sense of it. 
                         The sounds are approaching your room. Choose whether {run} or {hide}.`,
                 "choices": [
                     { "label": "run", "next": "ending" },
-                    { "label": "hide", "next": "scene3"}
+                    { "label": "hide", "next": "scene1.4"}
                 ]
             },
-            "scene3": {
+            "scene1.4": {
                 "text": `You resign to stay in this room for now. The world outside could be hostile, after all.
                         You swiftly dive behind a cluttered stack of boxes, pushing aside metallic bits and dirty clothes.
                         The doors slam open, and a paltry light spreads across the room. 
@@ -173,17 +173,17 @@
                         `,
                 "choices": [
                     { "label": "at the figure with the glowing object", "next": "restart" },
-                    { "label": "across the room", "next": "scene4" }
+                    { "label": "across the room", "next": "scene1.5" }
                 ]
             },
-            "scene4": {
+            "scene1.5": {
                 "text": `You chose to {return} or {sleep}. This is a long sentence added for testing purposes, 
                         allowing you to see how a large block of text can be written across multiple lines in 
                         your code editor without breaking anything in the story display. Even if this sentence 
                         continues far beyond what is practical, the browser will still render it as one continuous 
                         paragraph unless you manually insert line breaks.`,
                 "choices": [
-                    { "label": "return", "next": "scene5" },
+                    { "label": "return", "next": "scene1.6" },
                     { "label": "sleep", "next": "originalEnding" }
                 ]
             },
@@ -203,9 +203,9 @@
                         With this new purpose, you turn toward the mountains where Victor once worked. You will find him. 
                         And you will demand not love from humanity but the chance to not be alone. <br><br>
 
-                        The end, {restart}`,
+                        {The end...}`,
                 "choices": [
-                    { "label": "restart", "next": "start" }
+                    { "label": "The end...", "next": "restartArea" }
                 ]
             },
 
@@ -228,9 +228,9 @@
                         And so you choose adventure. Maybe you are not meantto belong here but somewhere else entirely. 
                         A world where your difference is not a curse, but a beginning.<br><br>
 
-                        The end {restart}`,
+                        {The end...}`,
                 "choices": [
-                    { "label": "restart", "next": "start" }
+                    { "label": "The end...", "next": "restartArea" }
                 ]
             },
 
@@ -264,30 +264,43 @@
                         Nothing more. <br>
                         Nothing less. <br><br>
 
-                        The end {restart}`,
+                        {The end...}`,
                 "choices": [
-                    { "label": "restart", "next": "start" }
+                    { "label": "The end...", "next": "restartArea" }
                 ]
             },
 
-            "test": {
-                "text": `This is a test scene. You can go to <br>
-                {scene0}, <br>
-                {originalEnding},<br>
-                {nomadEnding},<br>  
-                {circusEnding}`,
+            "admin": {
+                "text": `This is a test scene. You can go to: <br>
+                - {scene1.0}: The creation of the creature <br>
+                - {scene2.0}: First time experience of the outside world, <br>
+                - {scene3.0}: Learning about the outside world and himself <br>
+                - {scene4.0}: Rejection by the people, <br>
+                - {scene5.0}: Attempt to find Victor, <br><br>
+
+                Ending, <br>
+                - {originalEnding},<br>
+                - {nomadEnding},<br>  
+                - {circusEnding}`,
                 "choices": [
-                    { "label": "scene0", "next": "scene0" },
+                    { "label": "scene1.0", "next": "scene1.0" },
+                    { "label": "scene2.0", "next": "scene2.0" },
+                    { "label": "scene3.0", "next": "scene3.0" },
+                    { "label": "scene4.0", "next": "scene4.0" },
+                    { "label": "scene5.0", "next": "scene5.0" },
                     { "label": "originalEnding", "next": "originalEnding" },
                     { "label": "nomadEnding", "next": "nomadEnding" },
                     { "label": "circusEnding", "next": "circusEnding" }
                 ]
             },
 
-            "restart": {
-                "text": `The end. {restart}, {test}`,
+            "restartArea": {
+                "text": `You should try again, there are more endings or easter eggs to explore. <br>
+                        Will you try again? {yes...} <br><br>
+                       
+                        {test}`,
                 "choices": [
-                    { "label": "restart", "next": "start" },
+                    { "label": "yes...", "next": "start" },
                     { "label": "test", "next": "start", "requires": ["scene3"] }
                 ]
             }
