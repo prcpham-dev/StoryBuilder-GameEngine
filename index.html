@@ -343,21 +343,21 @@
                         ● A {small green house dotted with neatly trimmed shrubbery and exotic flora.}<br>
                         ● A {two story home with a giant door. The door makes it look as though the house is yawning.}<br>
                         ● A {delicious-smelling home. Your mouth waters from the smell.}<br>
-                        ● A {rundown, shambling shack of a home. The walls look like they are about to crumble.}<br>
                         Alternatively, staying hidden would be the safest option. You can maybe {hide until nightfall again}.
                         `,
                 "choices": [
                     { "label": "small green house dotted with neatly trimmed shrubbery and exotic flora.", "next": "scene2.5" },
                     { "label": "two story home with a giant door. The door makes it look as though the house is yawning.", "next": "scene2.6" },
                     { "label": "delicious-smelling home. Your mouth waters from the smell.", "next": "scene2.7" },
-                    { "label": "gigantic, pristine building, surrounded with an iron gate.", "next": "scene2.8" }
+                    { "label": "hide until nightfall again", "next": "scene2.8" }
                 ]
             },
             "scene2.5": {
-                "text": `The house is quite nice and comfy. There's a crackling fireplace, and a plate of food on the table. You could {stay
-                        and eat}, or {leave the house}.
+                "text": `The house is quite nice and comfy. There's a crackling fireplace, and a plate of food on the table.<br>
+                        You could {stay and eat}, or {leave the house}.
                         `,
                 "choices": [
+                    { "label": "stay and eat", "next": "scene2.51" },
                     { "label": "leave the house", "next": "scene2.4" }
                 ]
             },
@@ -513,8 +513,8 @@
                 
                 {You feel the need to pull your cloak's hood over your head.}`,
                 "choices": [
-                    { "label": "leave the village", "next": "getting_caught_before_scene3" },
-                    { "label": "You feel the need to pull your cloak's hood over your head.", "next": "scene2.67", "requires": ["scene2_cloak"] }
+                    { "label": "leave the village", "next": "scene2.9" },
+                    { "label": "You feel the need to pull your cloak's hood over your head.", "next": "scene2.91", "requires": ["scene2_cloak"] }
                 ]
             },
             "scene2.9": {
