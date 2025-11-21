@@ -43,7 +43,7 @@ var scene1 = {
     },
     "scene1.3": {
         "text": `You tried to study the paper, but couldn't make sense of it. 
-                The sounds are approaching your room. So you think to yourself, should I {run} or {hide}.`,
+                The sounds are approaching your room. So you think to yourself, should I {run} or {hide.}`,
         "choices": [
             { "label": "run", "next": "scene1.8" },
             { "label": "hide.", "next": "scene1.4" }
