@@ -1,17 +1,26 @@
-let story = {};
+// engine.js
+const start = {
+    "start": {
+        text: `Press the green text to move forward through the story. If you ever wish to go back in 
+            time, a back button will always be waiting at the top. Are you ready to begin? {Yes...}`,
+        choices: [
+            { label: "Yes...", next: "scene1.0" }
+        ]
+    }
+};
+
+const story = {
+  ...start,
+  ...(scene1 || {}),
+  ...(scene2 || {}),
+  ...(scene3 || {}),
+  ...(scene4 || {}),
+  ...(endings || {})
+};
+
 const textDiv = document.getElementById('text');
 const backDiv = document.getElementById('back');
 let historyStack = [];
-
-/**
- * Loads story.json and starts the game
- */
-async function loadStory() {
-    const response = await fetch("story.json");
-    story = await response.json();
-    historyStack = [];
-    goTo('start');
-}
 
 /**
  * Cleans up a string by removing excessive newlines and leading whitespace.
@@ -41,13 +50,12 @@ function renderText(text, choices) {
         if (show) {
             rendered = rendered.replace(
                 regex,
-                `<button class="twine-link" onclick="window.goTo('${choice.next}')">${choice.label}</button>`
+                `<button class="option-link" onclick="window.goTo('${choice.next}')">${choice.label}</button>`
             );
         } else {
             rendered = rendered.replace(regex, "");
         }
     });
-    // Convert newlines to <br> for display
     return rendered;
 }
 
@@ -61,7 +69,6 @@ function displayScene(sceneName) {
 
     textDiv.style.transition = "opacity 0.3s cubic-bezier(.4,0,.2,1)";
     textDiv.style.opacity = 0;
-
     setTimeout(() => {
         textDiv.innerHTML = renderText(scene.text, scene.choices);
         textDiv.style.opacity = 1;
@@ -69,7 +76,7 @@ function displayScene(sceneName) {
 
     if (historyStack.length > 1) {
         backDiv.innerHTML =
-            `<button class="back-link" onclick="goBack()">← Back</button>`;
+            `<button class="back-link" onclick="window.goBack()">← Back</button>`;
     } else {
         backDiv.innerHTML = "";
     }
@@ -79,20 +86,27 @@ function displayScene(sceneName) {
 * Goes to a specified scene and pushes it onto the history stack.
 * @param {string} name - The scene to navigate to.
 */
-function goTo(name) {
+window.goTo = function (name) {
     if (name === "start") historyStack = [];
     if (historyStack.length === 0 || historyStack[historyStack.length - 1] !== name) historyStack.push(name);
     displayScene(name);
-}
+};
 
 /**
 * Returns to the previous scene in history.
 */
-function goBack() {
+window.goBack = function () {
     if (historyStack.length > 1) {
         historyStack.pop();
-        displayScene(historyStack[historyStack.length - 1]);
+        const prev = historyStack[historyStack.length - 1];
+        displayScene(prev);
     }
-}
+};
 
-window.onload = loadStory;
+/**
+ * Initializes the game by resetting history and going to the start scene.
+ */
+window.addEventListener('DOMContentLoaded', () => {
+    historyStack = [];
+    window.goTo('start');
+});
