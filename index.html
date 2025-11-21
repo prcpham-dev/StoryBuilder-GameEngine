@@ -98,10 +98,10 @@
     <script>
         const story = {
             "start": {
-                "text": `Are you ready? {yes} or {admin}`,
+                "text": `Press the green text to move forward through the story. If you ever wish to go back in 
+                time, a back button will always be waiting at the top. Are you ready to begin? {Yes...}`,
                 "choices": [
-                    { "label": "yes", "next": "scene1.0" },
-                    { "label": "admin", "next": "admin" }
+                    { "label": "Yes...", "next": "scene1.0" }
                 ]
             },
 
@@ -140,20 +140,19 @@
                 ]
             },
             "scene1.2": {
-                "text": `You pat your pants and find a dusty pocket. That'll have to do.
-                        You stuff the papers inside your clothes. 
-                        The sounds are approaching your room. Choose whether {run} or {hide}.`,
+                "text": `The sounds grow louder, too close to ignore. You pat your pants and find a dusty pocket. That'll have to do.
+                        You stuff the papers inside your clothes. The footsteps are right outside your room now, leaving you only one 
+                        option: {hide.}`,
                 "choices": [
-                    { "label": "run", "next": "ending" },
-                    { "label": "hide", "next": "scene1.4" }
+                    { "label": "hide.", "next": "scene1.4" }
                 ]
             },
             "scene1.3": {
                 "text": `You tried to study the paper, but couldn't make sense of it. 
-                        The sounds are approaching your room. Choose whether {run} or {hide}.`,
+                        The sounds are approaching your room. So you think to yourself, should I {run} or {hide}.`,
                 "choices": [
-                    { "label": "run", "next": "ending" },
-                    { "label": "hide", "next": "scene1.4" }
+                    { "label": "run", "next": "scene1.8" },
+                    { "label": "hide.", "next": "scene1.4" }
                 ]
             },
             "scene1.4": {
@@ -215,10 +214,10 @@
                         You try to plead. You try to explain you didn't mean to attack those men. But in your final moments, you can only groan. The man cuts into your
                         body with that object, and everything goes black.
 
-                        {The end...}
+                        {When you wake up,...}
                     `,
                 "choices": [
-                    { "label": "The end...", "next": "restartArea" }
+                    { "label": "When you wake up,...", "next": "getting_caught_before_scene3" }
                 ]
             },
             "scene1.7": {
@@ -547,7 +546,7 @@
                         When you awaken once more, {everything has changed}.
                         `,
                 "choices": [
-                    { "label": "everything has changed", "next": "circusEnding" }
+                    { "label": "everything has changed", "next": "getting_caught_before_scene3" }
                 ]
             },
             "scene2.92": {
@@ -850,10 +849,8 @@
                         Or all you can think of now is: {Who you are?} <br>
                         {Why are you like this?}`,
                 "choices": [
-                    // { "label": "Who you are.", "next": "scene4_ending_with_notes", "requires": [] },
-                    // { "label": "Why are you like this?", "next": "scene4_ending_with_notes", "requires": [] }
-                    { "label": "Who you are?", "next": "scene4_with_notes" },
-                    { "label": "Why are you like this?", "next": "scene4_without_notes" }
+                    { "label": "Who you are.", "next": "scene4_ending_with_notes", "requires": ["scene1.2"] },
+                    { "label": "Why are you like this?", "next": "scene4_ending_with_notes", "requires": ["scene1.3"] }
                 ]
             },
 
@@ -943,7 +940,7 @@
                             You must choose what to say. <br><br>`,
                 "choices": [
                     { "label": "A violent wolf fighting humans.", "next": "knightEnding", "requires": ["scene3_chaos"] },
-                    { "label": "A peaceful cow resting under moonlight.", "next": "nbsp___", "requires": ["scene3_peace"] },
+                    { "label": "A peaceful cow resting under moonlight.", "next": "poetEnding", "requires": ["scene3_peace"] },
                 ]
             },
 
@@ -1033,7 +1030,7 @@
             },
 
             "circusEnding": {
-                "text": `Metal cuffs bite into your wrists and ankles. A collar digs into your neck. Humans drag you into a
+                "text": `Metal cuffs bite into your wrists and ankles. A collar digs into your neck. A creature drag you into a
                         bright circular tent filled with cheers. You blink, confused—until the first whip strikes your back.
                         The crowd laughs. You are forced to stand, forced to perform, forced to move heavy things for their
                         amusement. <br><br>
@@ -1043,12 +1040,12 @@
                         Night after night, you lie in chains and think of your beginning. You wish you had never opened your eyes
                         at all. Once, in desperation, you even try to end yourself. But you cannot die. You just simply heal. <br><br>
 
-                        You look at the other animals in cages wolves, bears, creatures who only wanted to protect themself.
-                        They tremble when the humans raise the whip. And when they look at you, they tremble even harder.
-                        To them, you look like the humans who hurt them. They fear you too. <br><br>
+                        You look at the other beings with fangs and fur, creatures who only wanted to protect themself.
+                        They tremble when the human raise the whip. And when they look at you, they tremble even harder.
+                        To them, you look like the the ones who walk upright who hurt them. They fear you too. <br><br>
 
-                        You are not human enough for people to love you. <br>
-                        You are not animal enough for beasts to trust you. <br>
+                        You are not a two-leg creatures. <br>
+                        You are not like the caged ones. <br>
                         Then what are you? <br><br>
 
                         In the darkness of the cage, you listen to the crowd outside the cheering, the clapping, the laughter
@@ -1071,7 +1068,7 @@
 
                         “Violence,” you say slowly. “It is in me. It is what I understand.” <br><br>
 
-                        Gasps echo through the hall, but you continue. You speak of the stories you read, battles, heroes, warriors who
+                        You speak of the stories you read, battles, heroes, warriors who
                         lived and died by the blade. In those pages, you found something that finally made sense. <br><br>
 
                         “War does not care for faces or shape,” you tell them. <br>
@@ -1097,43 +1094,64 @@
                 ]
             },
 
-            "admin": {
-                "text": `You can go to: <br>
-                        - {scene1.0}: The creation of the creature <br>
-                        - {scene2.0}: First time experience of the outside world <br>
-                        - {scene3.0}: Learning about the outside world and himself <br>
-                        - {scene4.0}: Rejection by the people <br><br>
+            "poetEnding": {
+                "text": `“I have read stories, chased ideas, gathered wisdom. All I am capable of is to think, to speak, to shape meaning 
+                        from silence. That is all. <br><br>
 
-                        Court Trial test: <br>
-                        - {getting_caught_before_scene3},<br><br>
+                        You look at a man who wears a cloak and a crown in the corner of the room. He steps forward, his gaze moves across you slowly <br> 
+                        “Look at yourself,” he says. “What beauty can come from you?” <br><br>
 
-                        Endings: <br>
-                        - {originalEnding},<br>
-                        - {nomadEnding},<br>
-                        - {circusEnding}<br>
-                        - {knightEnding}
-                        `,
+                        “Your Majesty… stories and poems,” you reply. “Words. Ideas. Imagination. That is what I have.” <br><br>
+                        
+                        The king frowns. <br>
+                        “Poetry,” he says, “is the purest form of beauty. It belongs to those touched by grace — the lovely, the blessed, the ones the world longs to remember.” 
+                        <br><br>
+
+                        His eyes sweep over you once more. <br>
+                        “And you,” he adds softly, “are none of those things.” <br><br>
+
+                        The guards grip your arms against the chains.  
+                        “Lock them below,” the king orders. “If they want to speak, let the darkness be their audience.” <br><br>
+
+                        You are dragged downward, past torches, past stone walls, past the last traces of daylight. The world narrows. At the 
+                        bottom of the kingdom, they abandon you in chains. <br><br>
+
+                        {Time passes by...}`,
                 "choices": [
-                    { "label": "scene1.0", "next": "scene1.0" },
-                    { "label": "scene2.0", "next": "scene2.0" },
-                    { "label": "scene3.0", "next": "scene3.0" },
-                    { "label": "scene4.0", "next": "scene4.0" },
-                    { "label": "getting_caught_before_scene3", "next": "getting_caught_before_scene3" },
-                    { "label": "originalEnding", "next": "originalEnding" },
-                    { "label": "nomadEnding", "next": "nomadEnding" },
-                    { "label": "circusEnding", "next": "circusEnding" },
-                    { "label": "knightEnding", "next": "knightEnding" }
+                    { "label": "Time passes by...", "next": "poetEndingFinish" }
+                ]
+            },
+
+            "poetEndingFinish": {
+                "text": `A new prisoner is dragged down the stairs and thrown into the cell beside yours.  
+                        He lies still for a moment, then lifts his head. His eyes meeting your metal-covered face. <br><br>
+
+                        He should scream. But he doesn’t. <br><br>
+
+                        You tilt your head in the dark.  
+                        “Why aren’t you afraid?” <br><br>
+
+                        The man lets out a shaky breath. “Rumors up there,” he murmurs. “An old convict... talks about a creature 
+                        with an iron face. He said there was something down here that told stories. Said listening to it was the only 
+                        thing that give him hope. The only thing that kept him hoping he might see the sky again.” <br><br>
+
+                        A quiet thought rises in you, maybe this is why you were brought here. Not to suffer alone, but to keep others 
+                        from falling apart in the dark. Your stories and poems, untouched by any chain, are the only things holding the 
+                        broken together down here. They listen because it helps them breathe. Maybe this is your purpose. <br><br>
+
+                        {The end...}`,
+                "choices": [
+                    { "label": "The end...", "next": "restartArea" }
                 ]
             },
 
             "restartArea": {
-                "text": `It seems this path has come to an end. <br>
+                "text": `It seems this path has come to an end. You have found 1 out 5 endings.<br>
                         Will you try again? {Yes...} <br><br>
 
                         {test}`,
                 "choices": [
-                    { "label": "Yes...", "next": "start" },
-                    { "label": "test", "next": "start", "requires": ["scene3"] }
+                    { "label": "Yes...", "next": "start" }
                 ]
             }
         };
