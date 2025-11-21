@@ -202,7 +202,7 @@
                         the other one had, block your way. Behind them, however, is what catches your eye. A gaunt man with sagging eyes and frazzled hair mutters
                         something to the others. The others nod -- from what you can understand, a sign of agreement between the two parties.<br><br>
                         
-                        You try to run towards them and attack them, just as you had attacked the others, yet it doesn't go as planned. Immediately, the
+                        You try to run towards them and attack them, yet it doesn't go as planned. Immediately, the
                         creatures fire something at you in rapid succession. BANG. BANG. BANG. Pain erupts throughout your body. 
                         Your vision blurs, and you crumple to the ground. The pain is too much to bear.<br><br>
                         
@@ -236,10 +236,187 @@
                         you can {run through the halls} or {jump through a window}.`,
                 "choices": [
                     { "label": "run through the halls", "next": "scene1.6" },
-                    { "label": "jump through a window", "next": "originalEnding" }
+                    { "label": "jump through a window", "next": "scene1.8" }
                 ]
             },
+            "scene1.8": {
+                "text": `You burst through the window, glass shards clattering all around you.<br> 
+                        The glass reflects the pale glow of moonlight, which draws your attention to your surroundings.<br> 
+                        A weathered dirt road meanders through a packed forest.<br>
+                        Beatdown fences struggle to stand, clearly wracked by weather.<br> 
+                        You hear someone yell in the distance. Best not to stay in this area any longer. Best to {keep running}.`,
+                "choices": [
+                    { "label": "keep running", "next": "scene1.9" }
+                ]
+            },
+            "scene1.9": {
+                "text": `You wander forth, following the dirt trail. Your stamina, surprisingly, knows no bounds.
+                        You trudge for days. The forest soon clears, but the trail continues onward. 
+                        You pass through dismal meadows, worn rubble, and shallow riverbeds.
+                        Cloudy skies turn to rainy days. Rainy days lead to sun-scorched midmornings. Still, you continue walking.
+                        Eventually, after an eternity, you spot a strange collection of buildings on the horizon.
+                        The path seems to split from here. You can decide whether to {go to the buildings} or {try another path}.`,
+                "choices": [
+                    { "label": "go to the buildings", "next": "scene2.0" },
+                    { "label": "try another path", "next": "scene1.91" }
+                ]
+            },
+            "scene1.91": {
+                "text": `You try the other path first. Fortunately, it does not lead far, bringing you into another forest.
+                        You come across some sort of campsite. A pack of tents surrounds a campfire long extinguished.
+                        All you hear are the rustling of leaves and chirping birds. It seems to be abandoned, so you might as well look around.<br><br>
+                        
+                        You rip the tent covers to shreds. While most contain nothing of note, you recover a rusted locket. 
+                        There seems to be some person inside... someone quite beautiful, in your eyes. You quickly collect the locket.
+                        It seems there isn't much more of note in this area. Perhaps you should {return to the buildings}.
+                        `,
+                "choices": [
+                    { "label": "return to the buildings", "next": "scene2.0" }
+                ]
+            },
+            "scene2.0": {
+                "text": `It is night when you finally arrive. 
+                        During that time, a part of your mind slowly recollects what this place was called -- a village.
+                        There are a few people still wandering around. Judging from your first encounter, they might not take too kindly to you.
+                        As such, you hide behind weathered walls and {view them} from afar. Unlike the figures that attacked you, these people seem much more calm.
+                        Perhaps you can {approach} one...`,
+                "choices": [
+                    { "label": "view them", "next": "scene2.1" },
+                    { "label": "approach", "next": "scene2.2" }
+                ]
+            },
+            "scene2.1": {
+                "text": `You decide to keep watching these people for a while longer.<br> 
+                        Looking at your own skin, you know you are not what they are.<br>
+                        Their fair, smooth skin is nothing like your putrid, green exterior.<br>
+                        Your weeks of journeying here catch up to you. A deep exhaustion fills your body and mind, and you wish for nothing else but to sleep.<br>
+                        You find a dreary grove of trees nearby and decide to retire there for the night.<br><br><br><br>
+                        Your eyes flicker open as sunlight spills over you. You wander back to the village, feeling much better than last night. <br>
+                        There are now much more people bustling through the streets. 
+                        Perhaps you can {approach} one, {find another vantage point}, or continue to {watch from afar}.
+                        `,
+                "choices": [
+                    { "label": "approach", "next": "scene2.2" },
+                    { "label": "watch from afar", "next": "scene2.3" },
+                    { "label": "find another vantage point", "next": "scene2.4" },
+                ]
+            },
+            "scene2.2": {
+                "text": `You lumber onto the main road, trying to appear as demure as possible.<br> 
+                        Unexpectedly, despite their formerly calm demeanor, the people do not take so kindly to your appearance.<br> 
+                        One begins screaming and pointing, and another one tumbles to the ground.<br> 
+                        You can't make sense of their response. You haven't attacked them like the figures from before!<br><br>
 
+                        For half a minute, you stand there, blankly. A third person approaches, waving around a weapon like the ones the figure had. They glower at you, shouting something.
+                        Time to go. You turn around and try to escape, but in your confusion... you failed to notice a person behind you.
+                        Nothing to do but try to {run}.`,
+                "choices": [
+                    { "label": "run", "next": "getting_caught_before_scene3" }
+                ]
+            },
+            "scene2.3": {
+                "text": `The people continue on with their day. You watch a man sit behind a large display of produce, happily chattering with some people.<br>
+                        A dancing group of people play strange-looking instruments, while a still group of people watch from a distance.<br>
+                        Several figures with garb of that like the men who attacked you march throughout the streets.<br>
+
+                        Before you can take in your surroundings, though, you hear someone approaching from behind.<br>
+                        You stand up and {try to run}, but it feels like it's too late.
+                        `,
+                "choices": [
+                    { "label": "try to run", "next": "getting_caught_before_scene3" }
+                ]
+            },
+            "scene2.4": {
+                "text": `The people continue on with their day. You watch a man sit behind a large display of produce, happily chattering with some people.<br>
+                        A dancing group of people play strange-looking instruments, while a group of people watch from a distance.<br>
+                        Several figures with garb of that like the men who attacked you march throughout the streets.<br>
+
+                        Before you can take in your surroundings, though, you hear someone approaching from behind.<br>
+                        You stand up and {try to run}, but it feels like it's too late.
+                        `,
+                "choices": [
+                    { "label": "try to run", "next": "getting_caught_before_scene3" }
+                ]
+            },
+            "scene2.4": {
+                "text": `You sneak behind a large row of buildings. There are a couple of places of residence you can go:<br>
+                        ● A {small green house dotted with neatly trimmed shrubbery and exotic flora.}<br>
+                        ● A {two story home with a giant door. The door makes it look as though the house is yawning.}<br>
+                        ● A {delicious-smelling home. Your mouth waters from the smell.}<br>
+                        ● A {gigantic, pristine building, surrounded with an iron gate.}<br>
+                        `,
+                "choices": [
+                    { "label": "small green house dotted with neatly trimmed shrubbery and exotic flora.", "next": "scene2.5" },
+                    { "label": "two story home with a giant door. The door makes it look as though the house is yawning.", "next": "scene2.6" },
+                    { "label": "delicious-smelling home. Your mouth waters from the smell.", "next": "scene2.7" },
+                    { "label": "gigantic, pristine building, surrounded with an iron gate.", "next": "scene2.8" }
+                ]
+            },
+            "scene2.5": {
+                "text": `The house is quite nice and comfy. There's a crackling fireplace, and a plate of food on the table. You could {stay
+                        and eat}, or {leave the house}.
+                        `,
+                "choices": [
+                    { "label": "leave the house", "next": "scene2.4" }
+                ]
+            },
+            "scene2.51": {
+                "text": `You sit down and begin chomping away at the food. You haven't eaten in days, so it refuels your mind and body tremendously. 
+
+                        Someone's voice yells from behind you. You turn around.
+                        A large, beefy man holds a gigantic weapon. You don't want to hurt him... but you don't feel that he feels the same.<br>
+                        There's nothing you can do but {try to run}.
+                        `,
+                "choices": [
+                    { "label": "try to run", "next": "getting_caught_before_scene3" }
+                ]
+            },
+            "scene2.6": {
+                "text": `The house is a beautiful, lonely place. A gallery of paintings line the walls. Unfortunately, there doesn't seem to be much of interest. You {wander} around and don't find anything useful. Might as well {leave}.
+                        `,
+                "choices": [
+                    { "label": "leave", "next": "scene2.4" },
+                    { "label": "wander", "next": "scene2.61" }
+                ]
+            },
+            "scene2.61": {
+                "text": `Again, the house doesn't have much of interest. You {wander} around some more and don't find anything useful. Might as well {leave}.
+                        `,
+                "choices": [
+                    { "label": "leave", "next": "scene2.4" },
+                    { "label": "wander", "next": "scene2.62" }
+                ]
+            },
+            "scene2.62": {
+                "text": `Even as you extensively scour this home, there is nothing that {draw}s your attention. Might as well {leave}.
+                        `,
+                "choices": [
+                    { "label": "leave", "next": "scene2.4" },
+                    { "label": "draw", "next": "scene2.63" }
+                ]
+            },
+            "scene2.63": {
+                "text": `Inexplictably, you gain the urge to let out your artistic urges. You grab a pencil and begin sketching.
+                        `,
+                "choices": [
+                    { "label": "leave", "next": "scene2.4" },
+                    { "label": "draw", "next": "scene2.63" }
+                ]
+            },
+            "scene2.7": {
+                "text": `The house doesn't have much of interest. You wander around and don't find anything useful. 
+                        `,
+                "choices": [
+                    { "label": "try to run", "next": "getting_caught_before_scene3" }
+                ]
+            },
+            "scene2.8": {
+                "text": `The house doesn't have much of interest. You wander around and don't find anything useful. 
+                        `,
+                "choices": [
+                    { "label": "try to run", "next": "getting_caught_before_scene3" }
+                ]
+            },
             "scene3.0": {
                 "text": `After a very long sleep in a shed, you wake up to the sound of birds chirping outside.
                         The sun shines through a small window, warming your face. Your bruises from yesterday are
@@ -366,7 +543,7 @@
                         At first, the symbols blur together, but slowly they begin to understand. <br><br>
 
                         Paradise Lost teaches you about creation, rejection, and the search for meaning. <br>
-                        Plutarch’s Lives shows you heroes shaped by struggle and virtue. <br>
+                        Plutarch's Lives shows you heroes shaped by struggle and virtue. <br>
                         The Sorrows of Werther fills you with a sadness you never knew had a name. <br><br>
 
                         These stories change you. They teach you to think, to question, to imagine. You feel both grateful
@@ -656,8 +833,8 @@
                         meant to roam beyond them into forests, mountains, and distant lands untouched by mankind. <br><br>
 
                         You remember the books you once found like Paradise Lost, The Sorrows of Young Werther,
-                        and Plutarch’s Lives. All of the great stories are of wanderers, exiles, and adventurers.
-                        And so you choose adventure. Maybe you are not meantto belong here but somewhere else entirely.
+                        and Plutarch's Lives. All of the great stories are of wanderers, exiles, and adventurers.
+                        And so you choose adventure. Maybe you are not meant to belong here but somewhere else entirely.
                         A world where your difference is not a curse, but a beginning.<br><br>
 
                         {The end...}`,
