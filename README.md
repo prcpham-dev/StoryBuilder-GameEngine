@@ -12,11 +12,15 @@ A simple, lightweight game engine for creating choice-based interactive stories 
 
 ## Getting Started
 
-1. Clone the repository:
+1. Open local:
+- Clone the repository:
    ```bash
    git clone https://github.com/prcpham-dev/StoryBuilder-GameEngine.git
    ```
-2. Open `index.html` in your browser to start playing or editing stories.
+- Open `index.html` in your browser to start playing or editing stories.
+
+2. Open web browser:
+- Open [https://prcpham-dev.github.io/StoryBuilder-GameEngine/](https://prcpham-dev.github.io/StoryBuilder-GameEngine/)
 
 ## How It Works
 
