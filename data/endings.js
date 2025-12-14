@@ -40,7 +40,7 @@ var endings = {
                 You remember the drawings you once saw. {A violent wolf fighting humans.}
                 {A peaceful cow resting under moonlight.} <br><br>
 
-                    You must choose what to say. <br><br>`,
+                You must choose what to say. <br><br>`,
         "choices": [
             { "label": "A violent wolf fighting humans.", "next": "knightEnding", "requires": ["scene3_chaos"] },
             { "label": "A peaceful cow resting under moonlight.", "next": "poetEnding", "requires": ["scene3_peace"] },

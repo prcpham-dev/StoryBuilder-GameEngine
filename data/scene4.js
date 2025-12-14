@@ -97,7 +97,7 @@ var scene4 = {
                 {Why are you like this?}`,
         "choices": [
             { "label": "Who you are?", "next": "scene4_ending_with_notes", "requires": ["scene1.2"] },
-            { "label": "Why are you like this?", "next": "scene4_ending_with_notes", "requires": ["scene1.3"] }
+            { "label": "Why are you like this?", "next": "scene4_without_notes", "requires": ["scene1.3"] }
         ]
     },
 
